@@ -25,18 +25,7 @@ const Cart = () => {
   const getCats = async () => {
     let response = await getAllCarts();
     setCart(response?.data);    
-
-  //  console.log(response?.data?.message);
-    // if (response?.data?.message == "Cart Empty") {
-    //   setCart(response?.data);
-    //   // setCalcCount(response?.data?.results);
-    //   // console.log(response?.data?.results);
-    //   setLoading(false);
-    //   return 
-    // }
-    // let q = response?.data?.data[0].reduce((x, y) => x + y.quantity, 0);
     setCalcCount(response?.data?.calcQuantity)
-
     setLoading(false);
   };
   // =======================================================
@@ -65,20 +54,10 @@ const Cart = () => {
     }
   };
   // =======================================================
-  // let products = cart?.data[0]?.map((e)=>  e.productId._id )
-  // axios.post("http://localhost:5000/order/createOrder",{products}).then((r)=> r).catch(e=> console.log(e))
-   
-// }
-
-
-
-
-  // =======================================================
   useEffect(() => {
     getCats();
   }, [calcCount, removeItem]);
 
-  // console.log(cart.message);
   return (
     <>
       {loading && (
@@ -110,7 +89,7 @@ const Cart = () => {
               <div className="col-md-11">
                 <div className="d-flex justify-content-between align-items-center">
                   <div>
-                    <h3>
+                    <h3 className="textTitle">
                       {/* {product?.productId?.title.split(" ").slice(0, 3).join(" ")} */}
                       {product?.productId?.title}
                     </h3>

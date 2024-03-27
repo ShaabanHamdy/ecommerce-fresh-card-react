@@ -102,21 +102,11 @@ export default function ContainerContextProvider(props) {
     }
   }
   // =================================================================================
-  const onlinePayment = async (values) => {
-    // return axios.post(`${baseUrl}/order/createOrder`,
-    // return axios.post(`https://freshcard-ecommerce-node.onrender.com/order/createOrder`,
-    // return await axios.post(`http://localhost:5000/order/createOrder`,
-    //   { values },
-    //   {
-    //     headers: {
-    //       auth: localStorage.getItem("token")
-    //     }
-    //   }).then((response) => console.log(response))
-    //   .catch((err) => console.log(err?.response.data))
+  
 
-  }
-
-
+useEffect(()=>{
+  setCalcCount(calcCount)
+},[calcCount])
   // ====================================================================
   return <ContainerContext.Provider value={{
     userToken,
@@ -125,7 +115,6 @@ export default function ContainerContextProvider(props) {
     getAllCarts,
     removeProduct,
     setCalcCount,
-    onlinePayment,
     getSpecificProduct,
     calcCount,
     baseUrl,

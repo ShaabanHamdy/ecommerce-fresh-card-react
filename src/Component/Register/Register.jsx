@@ -6,7 +6,7 @@ import * as Yup from "yup";
 import { ContainerContext } from "../Context/Context";
 
 const Register = () => {
-  const {baseUrl}=useContext(ContainerContext)
+  const { baseUrl } = useContext(ContainerContext);
   let [error, setError] = useState(null);
   let [loading, setLoading] = useState(false);
 
@@ -16,14 +16,18 @@ const Register = () => {
     const { data } = await axios
       .post(`${baseUrl}/user/signup`, values)
       .catch((err) => {
-        return setLoading(false), setError(err?.response?.data?.Error), console.log(err?.response?.data?.Error);
+        return (
+          setLoading(false),
+          setError(err?.response?.data?.Error),
+          console.log(err?.response?.data?.Error)
+        );
       });
-      
+
     if (data?.message == "success") {
       navigate("/login");
     }
   };
-  
+
   const phoneRegExp =
     /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
@@ -37,13 +41,12 @@ const Register = () => {
       .matches(phoneRegExp, "Phone number is not valid")
       .required("phone is required"),
     password: Yup.string()
-      .matches(/^[A-Z][a-z0-9]{5,10}$/, "Password should start With capital letter and more than 6 letters")
+      .matches(
+        /^[A-Z][a-z0-9]{5,10}$/,
+        "Password should start With capital letter and more than 6 letters"
+      )
       .max(10, "max password is 10 character")
       .required("password is required"),
-    rePassword: Yup.string().oneOf(
-      [Yup.ref("password")],
-      "confirm password must be the same value password"
-    ),
   });
 
   let formik = useFormik({
@@ -51,7 +54,6 @@ const Register = () => {
       name: "",
       email: "",
       password: "",
-      rePassword: "",
       phone: "",
     },
     validationSchema,
@@ -65,7 +67,7 @@ const Register = () => {
   };
   return (
     <>
-      <div className=" m-auto w-75 p-5">
+      <div className="formControl m-auto w-75 p-5">
         <h2>Register Now</h2>
         <form onSubmit={formik.handleSubmit}>
           <div className="my-3">
@@ -132,7 +134,7 @@ const Register = () => {
           <div className="my-3">
             <label htmlFor="password">Password:</label>
             <input
-             autoComplete="on"
+              autoComplete="on"
               id="password"
               name="password"
               type="password"
@@ -145,27 +147,6 @@ const Register = () => {
               <div className="alert alert-danger p-1 mt-1" role="alert">
                 {" "}
                 {formik.errors.password}{" "}
-              </div>
-            ) : (
-              ""
-            )}
-          </div>
-          <div className="my-3">
-            <label htmlFor="rePassword">Confirm Password:</label>
-            <input
-             autoComplete="on"
-              id="rePassword"
-              name="rePassword"
-              type="password"
-              className=" form-control"
-              onChange={formik.handleChange}
-              value={formik.values.rePassword}
-              onBlur={formik.handleBlur}
-            />
-            {formik.errors.rePassword && formik.touched.rePassword ? (
-              <div className="alert alert-danger p-1 mt-1" role="alert">
-                {" "}
-                {formik.errors.rePassword}{" "}
               </div>
             ) : (
               ""

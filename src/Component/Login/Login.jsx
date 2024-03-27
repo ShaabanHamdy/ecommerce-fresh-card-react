@@ -12,7 +12,6 @@ const Login = () => {
 
   let navigate = useNavigate();
   const handleOnSubmit = async (values) => {
-    // setLoading(true);
     const { data } = await axios
       .post(`${baseUrl}/user/login`, values)
       .catch((err) => {
@@ -52,7 +51,7 @@ const Login = () => {
   };
   return (
     <>
-      <div className=" m-auto w-75 p-5">
+      <div className=" formControl  m-auto w-75 p-5">
         <h2>Login</h2>
         <form onSubmit={formik.handleSubmit}>
           <div className="my-3">

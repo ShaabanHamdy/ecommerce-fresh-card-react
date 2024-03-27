@@ -102,16 +102,39 @@ a:hover {
   -o-border-radius: 20px;
 }
 .Products {
-    padding: 50px;
+  padding: 50px;
   letter-spacing: 2px;
   position: relative;
 }
-.Products::after {
-  content: "";
-  background-color: var(--main-color);
-  position: absolute;
-  width: 150px;
-  height: 1.5px;
-  top: 90px;
-  left: 43.7%;
+
+/* ================== media query ================================================ */
+
+@media screen and (max-width: 769px) {
+  /* ================== navbar ================================================ */
+  .spanSmall {
+    font-size: 12px !important;
+    right: 0px;
+  }
+  /* ================== slider images ================================================ */
+  .slidImage {
+    height: 250px;
+  }
+  /* ============== CategorySlider ================================ */
+  .CategorySlider {
+    height: 250px !important;
+    width: 150px !important;
+  }
+  /* ============== cart ================================ */
+  .border-main {
+    margin: 4px;
+  }
+  .textTitle {
+    padding: 5px;
+    font-size: 20px;
+  }
+  /* ============== form-control ================================ */
+  .formControl {
+    /* background-color: #0aad0a !important; */
+    width: 100% !important;
+  }
 }

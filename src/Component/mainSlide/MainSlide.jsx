@@ -29,10 +29,10 @@ const MainSlide = () => {
           <div className="col-md-9 ">
        <Slider {...settings}>
         
-            <img height={400} src={img1} className="w-100" alt="" />
-            <img height={400} src={img3} className="w-100" alt="" />
-            <img height={400} src={img4} className="w-100" alt="" />
-            <img height={400} src={img6} className="w-100" alt="" />
+            <img height={400} src={img1} className="slidImage w-100" alt="slidImage" />
+            <img height={400} src={img3} className="slidImage w-100" alt="slidImage" />
+            <img height={400} src={img4} className="slidImage w-100" alt="slidImage" />
+            <img height={400} src={img6} className="slidImage w-100" alt="slidImage" />
         
       </Slider> 
 
