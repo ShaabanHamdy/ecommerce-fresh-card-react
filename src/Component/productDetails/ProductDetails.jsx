@@ -1,9 +1,9 @@
-import ReactImageMagnify from "react-image-magnify";
 import React, { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { ContainerContext } from "../Context/Context";
-import Swal from "sweetalert2";
 import toast, { Toaster } from "react-hot-toast";
+import ReactImageMagnify from "react-image-magnify";
+import { useNavigate, useParams } from "react-router-dom";
+import Swal from "sweetalert2";
+import { ContainerContext } from "../Context/Context";
 
 const ProductDetails = () => {
   let { baseUrl, addToCart, getSpecificProduct } = useContext(ContainerContext);
@@ -14,7 +14,7 @@ const ProductDetails = () => {
   let [coverImage, setCoverImage] = useState("");
   let [errorQntMas, setErrorQntMas] = useState("");
   let { id } = useParams();
-
+  let navigate = useNavigate();
   // ==============================================use Query to get data==================
   const SpecificProduct = async () => {
     let { data } = await getSpecificProduct(id);
@@ -25,7 +25,7 @@ const ProductDetails = () => {
   // ====================================================================
 
   useEffect(() => {
-        SpecificProduct();    
+    SpecificProduct();
   }, []);
 
   // ====================================================================
@@ -35,7 +35,8 @@ const ProductDetails = () => {
       icon: "error",
       title: "Oops...",
       text: tokenMsg,
-      footer: `<a href="/login" target="_blank" >Go to Login</a>`,
+      // footer: `<a href="/https://shaaban-hamdy-fresh-cart.netlify.app/#/Login" target="_blank" >Go to Login</a>`,
+      footer: navigate("/Login"),
     });
   };
 
@@ -43,7 +44,7 @@ const ProductDetails = () => {
   const addProductToCart = async (id) => {
     let count = parseInt(getQntValue);
     let response = await addToCart(id, count);
-    
+
     if (response?.data?.message === "Product added successfully to your cart") {
       toast.success(
         <span className="small">Product added successfully to your cart</span>
@@ -89,8 +90,8 @@ const ProductDetails = () => {
                     height: 1000,
                   },
                 }}
-                />
-                {console.log(coverImage)}
+              />
+              {console.log(coverImage)}
             </div>
           </div>
           <div className="col-md-7  ">

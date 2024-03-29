@@ -1,23 +1,22 @@
-import axios from "axios";
-import React, { useContext, useEffect, useState } from "react";
-import { useQuery } from "react-query";
-import { Link } from "react-router-dom";
-import { ContainerContext } from "./../Context/Context";
-import Swal from "sweetalert2";
+import React, { useContext, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
+import { useQuery } from "react-query";
+import { Link, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+import { ContainerContext } from "./../Context/Context";
 
 const FeaturedProducts = () => {
   let { addToCart, getFeaturesProducts } = useContext(ContainerContext);
   const [quantity, setQuantity] = useState(1);
-  const [refreshQuantity, setRefreshQuantity] = useState(false);
   let { data, isLoading } = useQuery("featuresProducts", getFeaturesProducts);
-
+  let navigate = useNavigate();
   const sweetAlertError = (tokenMsg) => {
     Swal.fire({
       icon: "error",
       title: "Oops...",
       text: tokenMsg,
-      footer: `<a href="/login" target="_blank" >Go to Login</a>`,
+      // footer: `<a href="/https://shaaban-hamdy-fresh-cart.netlify.app/#/Login" target="_blank" >Go to Login</a>`,
+      footer: navigate("/Login"),
     });
   };
   const sweetAlertErrorQuantity = (tokenMsg) => {
@@ -61,7 +60,7 @@ const FeaturedProducts = () => {
         <div className="container py-2">
           <h2 className="m-4 text-main">Features Products</h2>
           <div className="row">
-            {data?.data?.data.map((product) => (
+            {data?.data?.data.slice(2, 8).map((product) => (
               <div key={product._id} className="col-lg-2 col-md-3 col-sm-4">
                 <div className="product cursor-pointer py-3 px-2">
                   <Link to={`/productDetails/${product._id}`}>

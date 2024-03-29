@@ -102,11 +102,28 @@ export default function ContainerContextProvider(props) {
     }
   }
   // =================================================================================
-  
+  async function functionOnRender() {
 
-useEffect(()=>{
-  setCalcCount(calcCount)
-},[calcCount])
+    await axios.get(`${baseUrl}/cart/logFunction`, {
+
+    }).then((response) => {
+      return response;
+    })
+      .catch((err) => err?.response)
+  }
+
+  // =================================================================================
+  useEffect(() => {
+    setInterval(() => {
+      functionOnRender()
+
+    }, 4000);
+  }, [])
+
+
+  useEffect(() => {
+    setCalcCount(calcCount)
+  }, [calcCount])
   // ====================================================================
   return <ContainerContext.Provider value={{
     userToken,

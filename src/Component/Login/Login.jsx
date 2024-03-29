@@ -98,7 +98,15 @@ const Login = () => {
               ""
             )}
           </div>
-
+          <div>
+            <a
+            className=" text-primary"
+              href="https://shaaban-hamdy-fresh-cart.netlify.app/#/Register"
+              target="_blank"
+            >
+              Go to Register
+            </a>
+          </div>
           <div className=" d-flex justify-content-end">
             {loading ? (
               <button
